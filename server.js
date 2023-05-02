@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
+const cTable = require('console.table');
 
 // GIVEN a command-line application that accepts user input
 // WHEN I start the application
@@ -39,6 +40,8 @@ const db = mysql.createConnection(
   },
 );
 
+
+
 inquirer
   .prompt([
     {
@@ -52,25 +55,59 @@ inquirer
         "Add a department", 
         "Add a role", 
         "Add an employee", 
-        "Update an employee role"
-    ]},
-    {
-      type: 'input',
-      name: 'location',
-      message: 'Where are you from?',
+        "Update an employee role",
+        new inquirer.Separator(),
+        "Quit"
+      ],
+
     },
     {
-      type: 'input',
-      name: 'hobby',
-      message: 'What is your favorite hobby?',
+        type: 'input',
+        name: 'departmentName',
+        message: 'What is the name of the department?',
+        when(answers) {
+            return answers.home == "Add a department" 
+        }
     },
+    {
+        type: 'input',
+        name: 'addRole',
+        message: 'What is the name of the role?',
+        when(answers) {
+            return answers.home == "Add a role" 
+        }
+    },
+    {
+        type: 'input',
+        name: 'newRoleSalary',
+        message: 'What is the salary of the role?',
+        when(answers) {
+            return answers.addRole == "Add a department" 
+        }
+    },
+    {
+        //CAN'T HARD-CODE THIS ONE!
+        type: 'list',
+        name: 'departmentCategory',
+        message: 'Which department does the role belong to?',
+        choices: [
+            "Sales", 
+            "View all roles", 
+            "View all employees", 
+            "Add a department", 
+        ]
+    },
+
   ])
   .then((answers) => {
-    db.query('INSERT INTO "//" (movie_name) VALUES (?)', params, function (err, results) {
-        res.json({
-            message: 'success',
-            data: body
-        })
-      });
+    console.log(answers);
+    // db.query('INSERT INTO "//" (movie_name) VALUES (?)', params, function (err, results) {
+    //     res.json({
+    //         message: 'success',
+    //         data: body
+    //     })
+    //   });
 
   });
+
+  //added ________ into database
