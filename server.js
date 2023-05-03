@@ -58,48 +58,36 @@ inquirer
         "Update an employee role",
         new inquirer.Separator(),
         "Quit"
-      ],
-
+      ]
     },
-    {
-        type: 'input',
-        name: 'departmentName',
-        message: 'What is the name of the department?',
-        when(answers) {
-            return answers.home == "Add a department" 
-        }
-    },
-    {
-        type: 'input',
-        name: 'addRole',
-        message: 'What is the name of the role?',
-        when(answers) {
-            return answers.home == "Add a role" 
-        }
-    },
-    {
-        type: 'input',
-        name: 'newRoleSalary',
-        message: 'What is the salary of the role?',
-        when(answers) {
-            return answers.addRole == "Add a department" 
-        }
-    },
-    {
-        //CAN'T HARD-CODE THIS ONE!
-        type: 'list',
-        name: 'departmentCategory',
-        message: 'Which department does the role belong to?',
-        choices: [
-            "Sales", 
-            "View all roles", 
-            "View all employees", 
-            "Add a department", 
-        ]
-    },
-
   ])
   .then((answers) => {
+    switch (answers) {
+        case "View all departments":
+            // db.query('INSERT INTO "//" (movie_name) VALUES (?)', params, function (err, results) {
+            //     res.json({
+            //         message: 'success',
+            //         data: body
+            //     })
+            //   });
+        case "View all roles":
+
+        case "View all employees":
+
+        case "Add a department":
+
+        case "Add a role":
+
+        case "Add an employee":
+
+        case "Update an employee role":
+
+        case "Quit":
+            break;
+
+        default: 
+
+    }
     console.log(answers);
     // db.query('INSERT INTO "//" (movie_name) VALUES (?)', params, function (err, results) {
     //     res.json({
@@ -111,3 +99,40 @@ inquirer
   });
 
   //added ________ into database
+
+//   {
+//     type: 'input',
+//     name: 'departmentName',
+//     message: 'What is the name of the department?',
+//     when(answers) {
+//         return answers.home == "Add a department" 
+//     }
+// },
+// {
+//     type: 'input',
+//     name: 'addRole',
+//     message: 'What is the name of the role?',
+//     when(answers) {
+//         return answers.home == "Add a role" 
+//     }
+// },
+// {
+//     type: 'input',
+//     name: 'newRoleSalary',
+//     message: 'What is the salary of the role?',
+//     when(answers) {
+//         return answers.addRole == "Add a department" 
+//     }
+// },
+// {
+//     //CAN'T HARD-CODE THIS ONE!
+//     type: 'list',
+//     name: 'departmentCategory',
+//     message: 'Which department does the role belong to?',
+//     choices: [
+//         "Sales", 
+//         "View all roles", 
+//         "View all employees", 
+//         "Add a department", 
+//     ]
+// },
