@@ -35,7 +35,7 @@ const db = mysql.createConnection(
   {
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'password',
     database: 'employeeTracker_db'
   },
 );
